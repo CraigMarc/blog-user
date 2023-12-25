@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 
+
 /*
 const Login = () => {
   return (
@@ -32,12 +33,15 @@ const Login = (props) => {
   const {
 
     setToken,
-
-
+    setLoggedIn,
+    
   } = props;
+
+  
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -45,8 +49,10 @@ const Login = (props) => {
       email,
       password
     });
+    
     setToken(token);
-    console.log(token)
+    
+    
   }
 
 
