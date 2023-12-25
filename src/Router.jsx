@@ -26,6 +26,7 @@ const Router = (props) => {
         element:
           <Posts
           messages={messages}
+          setMessages={setMessages}
           comments={comments}
           setComments={setComments}
           
