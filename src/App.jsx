@@ -32,26 +32,9 @@ function App() {
 
   const [messages, setMessages] = useState([])
   const [comments, setComments] = useState()
-  const [loggedIn, setLoggedIn] = useState();
-/*
-  function setToken(userToken) {
-    sessionStorage.setItem('token', JSON.stringify(userToken));
-  }
+  
 
-  function getToken() {
-    const tokenString = sessionStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken?.token
-  }
-
-  const token = getToken();
-*/
 const { token, setToken } = useToken();
-
-  //token state
-
-
-  //const [token, setToken] = useState();
 
 
   if (!token) {
@@ -120,8 +103,7 @@ const { token, setToken } = useToken();
         setComments={setComments}
         token={token}
         setToken={setToken}
-        loggedIn={loggedIn}
-        setLoggedIn={setLoggedIn}
+        
       />
     </div>
   )

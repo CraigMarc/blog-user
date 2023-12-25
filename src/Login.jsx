@@ -2,20 +2,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 
 
-/*
-const Login = () => {
-  return (
-    <div className="error">
-      <h1>Login</h1>
-      <Link to="/">
-        You can go back to the home page by clicking here, though!
-      </Link>
-    </div>
-  );
-};*/
 
 async function loginUser(credentials) {
-  console.log(credentials)
+  
   return fetch('https://blogapi1200.fly.dev/api/login', {
     method: 'POST',
     headers: {
@@ -33,7 +22,7 @@ const Login = (props) => {
   const {
 
     setToken,
-    setLoggedIn,
+   
     
   } = props;
 
