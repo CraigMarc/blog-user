@@ -1,22 +1,6 @@
-/*
-import { Link } from "react-router-dom";
-
-const Posts = () => {
-  return (
-    <div className="error">
-      <h1>Homepage</h1>
-      <Link to="/">
-        You can go back to the home page by clicking here, though!
-      </Link>
-    </div>
-  );
-};
-
-export default Posts;*/
-
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
-
+import Header from "./Header"
 
 function Posts(props) {
 
@@ -41,17 +25,13 @@ function Posts(props) {
 
     try {
 
-     
 
       const res = await fetch('https://blogapi1200.fly.dev/users/posts', {
         headers: { Authorization: tokenFetch }
-        
+
       })
 
-      //return fetch
-     // const res = await fetch("https://blogapi1200.fly.dev/api/published")
-
-     const messageData = await res.json();
+      const messageData = await res.json();
 
       setMessages(messageData)
 
@@ -90,15 +70,21 @@ function Posts(props) {
 
   return (
     <div>
-
+      <Header/>
       <div className='postContainer'>
 
         <div className="postCard">
 
           {messages.map((index) => {
             let date = new Date(index.timestamp).toLocaleString()
-
-
+            let published = ""
+            if (index.published == true) {
+              published = 'Yes'
+            }
+            else {
+              published = 'No'
+            }
+            
             return (
 
               <div key={index._id} className="product">
@@ -107,6 +93,7 @@ function Posts(props) {
 
 
                     <h3>{index.title}</h3>
+                    <p>Published: {published}</p>
                     <p>{date}</p>
                   </div>
                 </Link>
