@@ -12,6 +12,8 @@ const Router = (props) => {
       setMessages,
       comments,
       setComments,
+      token,
+      setToken
       
   
     } = props;
@@ -23,6 +25,7 @@ const Router = (props) => {
         element: <Login
         messages={messages}
           setMessages={setMessages}
+          setToken={setToken}
         />,
         errorElement: <ErrorPage />,
       },
