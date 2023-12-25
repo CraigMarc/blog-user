@@ -70,7 +70,7 @@ function Posts(props) {
 
   return (
     <div>
-      <Header/>
+      <Header />
       <div className='postContainer'>
 
         <div className="postCard">
@@ -84,7 +84,7 @@ function Posts(props) {
             else {
               published = 'No'
             }
-            
+
             return (
 
               <div key={index._id} className="product">
@@ -97,6 +97,19 @@ function Posts(props) {
                     <p>{date}</p>
                   </div>
                 </Link>
+                <div className="deleteButtonContainer">
+                  <button className="delete" value={index.id} >delete post</button>
+
+                </div>
+                <div className="editButtonContainer">
+                  <button className="delete" value={index.id} >edit post</button>
+
+                </div>
+                <div className="publishButtonContainer">
+                  <button className="delete" value={index.id} >publish/unpublish post</button>
+
+                </div>
+
               </div>
 
             )
