@@ -13,12 +13,45 @@ function Posts(props) {
   } = props;
 
 
+
+  //load page get info use token
+
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+/*
+  const token = sessionStorage.getItem("token");
+  const tokenOb = JSON.parse(token)
+  const tokenFetch = `Bearer ${tokenOb.token}`*/
 
+
+const handleDelete = async (event) => {
+  let id = event.target.value
   const token = sessionStorage.getItem("token");
   const tokenOb = JSON.parse(token)
   const tokenFetch = `Bearer ${tokenOb.token}`
+
+  await fetch(`https://blogapi1200.fly.dev/users/posts/${id}`, {
+    method: 'Delete',
+    
+    headers: {
+      Authorization: tokenFetch,
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+     
+      setMessages(data)
+      //maybe set state for a rerender
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+
+  //get posts
+
 
   const fetchInfo = async () => {
     //setLoading(true)
@@ -98,15 +131,15 @@ function Posts(props) {
                   </div>
                 </Link>
                 <div className="deleteButtonContainer">
-                  <button className="delete" value={index.id} >delete post</button>
+                  <button className="delete" value={index._id} onClick={handleDelete} >delete post</button>
 
                 </div>
                 <div className="editButtonContainer">
-                  <button className="delete" value={index.id} >edit post</button>
+                  <button className="delete" value={index._id} >edit post</button>
 
                 </div>
                 <div className="publishButtonContainer">
-                  <button className="delete" value={index.id} >publish/unpublish post</button>
+                  <button className="delete" value={index._id} >publish/unpublish post</button>
 
                 </div>
 
