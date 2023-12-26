@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react'
-
+import Header from './Header'
 
 
 
@@ -47,6 +47,7 @@ const NewPost = (props) => {
 
   return (
     <div className="login-wrapper">
+      <Header/>
       <h2>New Post</h2>
       <form onSubmit={handleSubmit}>
         <label>
