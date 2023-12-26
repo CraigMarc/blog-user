@@ -87,7 +87,6 @@ const Edit = (props) => {
 
   }
 
- /*
       return (
         <div className="login-wrapper">
           <Header/>
@@ -107,44 +106,9 @@ const Edit = (props) => {
           </form>
         </div>
       )
-      */
-  return (
+      
 
-    <div>
-
-      <form id="commentForm" onSubmit={handleSubmit}>
-
-        <label>
-          Title {' '}
-          <input
-            id="title"
-            type="text"
-            name="title"
-            defaultValue={postData[0].title}
-            required
-
-          />
-        </label>
-
-        <label>
-          Text {' '}
-          <textarea
-            id="text"
-            type="text"
-            name="text"
-            defaultValue={postData[0].text}
-            required
-
-          />
-        </label>
-
-        <div className="submitContainer">
-          <input type="submit" value="add a comment" />
-        </div>
-      </form>
-    </div>
-  )
-
+ 
 }
 
 
