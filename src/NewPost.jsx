@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react'
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from 'react'
 
 
 
 
 
 const NewPost = (props) => {
-  
+
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState();
   const [text, setText] = useState();
 
@@ -18,31 +20,29 @@ const NewPost = (props) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target).entries());
     console.log(data)
-  
+
     await fetch("https://blogapi1200.fly.dev/users/posts/", {
-        method: 'Post',
-        body: JSON.stringify({
-          title: data.title,
-          text: data.text,
-         
-        }),
-        headers: {
-          Authorization: tokenFetch,
-          'Content-type': 'application/json; charset=UTF-8',
-        },
+      method: 'Post',
+      body: JSON.stringify({
+        title: data.title,
+        text: data.text,
+
+      }),
+      headers: {
+        Authorization: tokenFetch,
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        navigate('/');
+        
       })
-        .then((response) => response.json())
-        .then((data) => {
-  
-          //setMessages(data)
-          //redirect to home
-          //maybe set state for a rerender
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-  
-  
+      .catch((err) => {
+        console.log(err.message);
+      });
+
+
   }
 
   return (
