@@ -18,36 +18,62 @@ function Posts(props) {
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-/*
-  const token = sessionStorage.getItem("token");
-  const tokenOb = JSON.parse(token)
-  const tokenFetch = `Bearer ${tokenOb.token}`*/
 
-
-const handleDelete = async (event) => {
-  let id = event.target.value
   const token = sessionStorage.getItem("token");
   const tokenOb = JSON.parse(token)
   const tokenFetch = `Bearer ${tokenOb.token}`
 
-  await fetch(`https://blogapi1200.fly.dev/users/posts/${id}`, {
-    method: 'Delete',
-    
-    headers: {
-      Authorization: tokenFetch,
-      'Content-type': 'application/json; charset=UTF-8',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-     
-      setMessages(data)
-      //maybe set state for a rerender
+  // publish posts
+
+  const handlePublish = async (event) => {
+    let id = event.target.value
+
+
+    await fetch(`https://blogapi1200.fly.dev/users/publish/${id}`, {
+      method: 'PUT',
+
+      headers: {
+        Authorization: tokenFetch,
+        'Content-type': 'application/json; charset=UTF-8',
+      },
     })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
+      .then((response) => response.json())
+      .then((data) => {
+
+        setMessages(data)
+        //maybe set state for a rerender
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+
+
+// delete posts
+
+  const handleDelete = async (event) => {
+    let id = event.target.value
+
+
+    await fetch(`https://blogapi1200.fly.dev/users/posts/${id}`, {
+      method: 'Delete',
+
+      headers: {
+        Authorization: tokenFetch,
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+
+        setMessages(data)
+        //maybe set state for a rerender
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
 
   //get posts
@@ -138,8 +164,8 @@ const handleDelete = async (event) => {
                   <button className="delete" value={index._id} >edit post</button>
 
                 </div>
-                <div className="publishButtonContainer">
-                  <button className="delete" value={index._id} >publish/unpublish post</button>
+                <div className="publishButtonContainer"  >
+                  <button className="delete" value={index._id} onClick={handlePublish} >publish/unpublish post</button>
 
                 </div>
 
