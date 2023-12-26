@@ -48,9 +48,7 @@ function Posts(props) {
       });
   };
 
-
-
-// delete posts
+  // delete posts
 
   const handleDelete = async (event) => {
     let id = event.target.value
@@ -75,7 +73,12 @@ function Posts(props) {
       });
   };
 
+  // edit posts
 
+  const handleEdit = async (event) => {
+    let id = event.target.value
+    console.log(id)
+  }
   //get posts
 
 
@@ -160,12 +163,13 @@ function Posts(props) {
                   <button className="delete" value={index._id} onClick={handleDelete} >delete post</button>
 
                 </div>
-                <div className="editButtonContainer">
-                  <button className="delete" value={index._id} >edit post</button>
-
+                <div className="editButtonContainer" >
+                  <Link to={`post/${index._id}`} state={index._id}>
+                    <button className="edit" value={index._id} >edit post</button>
+                  </Link>
                 </div>
                 <div className="publishButtonContainer"  >
-                  <button className="delete" value={index._id} onClick={handlePublish} >publish/unpublish post</button>
+                  <button className="publish" value={index._id} onClick={handlePublish} >publish/unpublish post</button>
 
                 </div>
 
@@ -173,6 +177,12 @@ function Posts(props) {
 
             )
           })}
+
+          <div className="newPostContainer" >
+            <Link to={'/newpost'}>
+              <button className="edit"  >New Post</button>
+            </Link>
+          </div>
 
         </div>
       </div>
