@@ -8,6 +8,8 @@ function Posts(props) {
 
     messages,
     setMessages,
+    comments,
+    setComments
 
 
   } = props;
@@ -87,16 +89,20 @@ function Posts(props) {
 
     try {
 
+      const [apiPosts, apiComments] = await Promise.all([
+        fetch('https://blogapi1200.fly.dev/users/posts', {
+          headers: { Authorization: tokenFetch }
+  
+        }),
+        fetch("https://blogapi1200.fly.dev/api/comments")
+      ]);
 
-      const res = await fetch('https://blogapi1200.fly.dev/users/posts', {
-        headers: { Authorization: tokenFetch }
 
-      })
-
-      const messageData = await res.json();
-
+      const messageData = await apiPosts.json();
+      const commentData = await apiComments.json();
       setMessages(messageData)
-
+      setComments(commentData)
+      console.log(commentData)
     }
 
     catch (error) {
