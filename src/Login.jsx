@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react'
 
 
 async function loginUser(credentials) {
+
   
+  try {
   return fetch('https://blogapi1200.fly.dev/api/login', {
     method: 'POST',
     headers: {
@@ -14,6 +16,12 @@ async function loginUser(credentials) {
     body: JSON.stringify(credentials)
   })
     .then(data => data.json())
+  }
+    catch(error)  {
+     
+      console.log(err.message);
+    
+    }
  }
 
 
@@ -22,6 +30,7 @@ const Login = (props) => {
   const {
 
     setToken,
+    
    
     
   } = props;
@@ -40,6 +49,8 @@ const Login = (props) => {
     });
     
     setToken(token);
+
+    
     
     
   }
@@ -61,6 +72,7 @@ const Login = (props) => {
           <button type="submit">Submit</button>
         </div>
       </form>
+      
     </div>
   )
 }
