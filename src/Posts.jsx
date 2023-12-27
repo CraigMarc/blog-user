@@ -102,7 +102,7 @@ function Posts(props) {
       const commentData = await apiComments.json();
       setMessages(messageData)
       setComments(commentData)
-      console.log(commentData)
+      
     }
 
     catch (error) {
@@ -139,11 +139,14 @@ function Posts(props) {
   return (
     <div>
       <Header />
+      <h2>All Posts</h2>
       <div className='postContainer'>
 
         <div className="postCard">
 
           {messages.map((index) => {
+            const postComments = comments.filter((comment) => comment.posts_id == index._id).length
+              
             let date = new Date(index.timestamp).toLocaleString()
             let published = ""
             if (index.published == true) {
@@ -156,15 +159,16 @@ function Posts(props) {
             return (
 
               <div key={index._id} className="product">
-                <Link to={`post/${index._id}`} state={index._id}>
+                
                   <div id={index._id} className="card" >
 
 
                     <h3>{index.title}</h3>
                     <p>Published: {published}</p>
                     <p>{date}</p>
+                    <p>Comments: {postComments}</p>
                   </div>
-                </Link>
+                
                 <div className="deleteButtonContainer">
                   <button className="delete" value={index._id} onClick={handleDelete} >delete post</button>
 
