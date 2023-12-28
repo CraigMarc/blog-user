@@ -2,44 +2,42 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react'
 
 
-
-async function loginUser(credentials) {
-
-  
-  try {
-  return fetch('https://blogapi1200.fly.dev/api/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
-  }
-    catch(error)  {
-     
-      console.log(err.message);
-    
-    }
- }
-
-
 const Login = (props) => {
 
   const {
 
     setToken,
-    
    
     
   } = props;
 
-  
+  async function loginUser(credentials) {
 
+  
+    try {
+    return fetch('https://blogapi1200.fly.dev/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      
+      body: JSON.stringify(credentials)
+    })
+      .then(data => data.json())
+    
+    }
+      catch(error)  {
+       
+        console.log(err.message);
+      
+      }
+   }
+
+  
+//event listener
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  
+  const[error, setError] = useState()
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -47,13 +45,16 @@ const Login = (props) => {
       email,
       password
     });
-    
+    let errMessage = token.message
     setToken(token);
-
-    
-    
+    if (token.message = "wrong username or password" ){
+      setError(errMessage)
+      }
+      else{setError()}
     
   }
+
+  
 
 
   return(
@@ -72,7 +73,7 @@ const Login = (props) => {
           <button type="submit">Submit</button>
         </div>
       </form>
-      
+      <p>{error}</p>
     </div>
   )
 }

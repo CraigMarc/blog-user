@@ -15,8 +15,7 @@ const Router = (props) => {
     setComments,
     token,
     setToken,
-
-
+    
 
   } = props;
 
@@ -41,7 +40,7 @@ const Router = (props) => {
       element: <Login
         
         setToken={setToken}
-
+        
       />,
       errorElement: <ErrorPage />,
     },
