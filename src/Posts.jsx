@@ -102,7 +102,7 @@ function Posts(props) {
       const commentData = await apiComments.json();
       setMessages(messageData)
       setComments(commentData)
-      console.log(messageData)
+      
     }
 
     catch (error) {

@@ -19,10 +19,14 @@ const NewPost = (props) => {
   const handleSubmit = async e => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target).entries());
-    console.log(data.image)
-
+    const formData = new FormData();
+    formData.append("title", data.title)
+    formData.append("text", data.text)
+    formData.append("image", data.image);
+    console.log(data)
+/*
     await fetch("https://blogapi1200.fly.dev/users/posts/", {
-      //await fetch("http://localhost:3000/users/posts/", {
+      
       method: 'Post',
       body: JSON.stringify({
         title: data.title,
@@ -43,7 +47,26 @@ const NewPost = (props) => {
       .catch((err) => {
         console.log(err.message);
       });
+*/
+await fetch("https://blogapi1200.fly.dev/users/posts/", {
+      
+      method: 'Post',
+      body: formData,
+      
+      headers: {
+        Authorization: tokenFetch,
+        //'Content-type': 'application/json; charset=UTF-8',
+        
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        navigate('/');
 
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
   }
 
