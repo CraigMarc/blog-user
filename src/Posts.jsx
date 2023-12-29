@@ -102,7 +102,7 @@ function Posts(props) {
       const commentData = await apiComments.json();
       setMessages(messageData)
       setComments(commentData)
-      
+      console.log(messageData)
     }
 
     catch (error) {
@@ -146,7 +146,11 @@ function Posts(props) {
 
           {messages.map((index) => {
             const postComments = comments.filter((comment) => comment.posts_id == index._id).length
-              
+            let image = index.image
+            let url =""
+            if (image) {
+            url = `https://blogapi1200.fly.dev/uploads/${index.image}`
+            }
             let date = new Date(index.timestamp).toLocaleString()
             let published = ""
             if (index.published == true) {
@@ -164,6 +168,7 @@ function Posts(props) {
 
 
                     <h3>{index.title}</h3>
+                    <img className="img" src={url}></img>
                     <p>Published: {published}</p>
                     <p>{date}</p>
                     <p>Comments: {postComments}</p>

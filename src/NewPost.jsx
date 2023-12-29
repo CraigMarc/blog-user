@@ -1,8 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from 'react'
 import Header from './Header'
-
-
+import ImageUpload from './ImageUpload'
+import { useForm } from "react-hook-form";
 
 
 const NewPost = (props) => {
@@ -19,24 +19,26 @@ const NewPost = (props) => {
   const handleSubmit = async e => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target).entries());
-    console.log(data)
+    console.log(data.image)
 
     await fetch("https://blogapi1200.fly.dev/users/posts/", {
+      //await fetch("http://localhost:3000/users/posts/", {
       method: 'Post',
       body: JSON.stringify({
         title: data.title,
         text: data.text,
-
+        image: data.image
       }),
       headers: {
         Authorization: tokenFetch,
-        'Content-type': 'application/json; charset=UTF-8',
+        //'Content-type': 'application/json; charset=UTF-8',
+        'Content-type': "multipart/form-data"
       },
     })
       .then((response) => response.json())
       .then((data) => {
         navigate('/');
-        
+
       })
       .catch((err) => {
         console.log(err.message);
@@ -47,9 +49,10 @@ const NewPost = (props) => {
 
   return (
     <div className="login-wrapper">
-      <Header/>
+
+      <Header />
       <h2>New Post</h2>
-      <form onSubmit={handleSubmit}>
+      <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <label>
           <p>Title</p>
           <input type="text" name="title" onChange={e => setTitle(e.target.value)} />
@@ -58,10 +61,15 @@ const NewPost = (props) => {
           <p>Text</p>
           <textarea type="text" name="text" onChange={e => setText(e.target.value)} />
         </label>
+        <div className="form-group">
+          <label>Image:</label>
+          <input type="file" className="form-control-file" id="image" name="image"/>
+        </div>
         <div>
           <button type="submit">Submit</button>
         </div>
       </form>
+
     </div>
   )
 }
