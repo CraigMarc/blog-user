@@ -21,6 +21,11 @@ const Edit = (props) => {
   const postId = urlParams.id
   const postData = messages.filter((post) => post._id == postId)
   const commentData = comments.filter((comment) => comment.posts_id == postId)
+  let image = postData[0].image
+            let url =""
+            if (image) {
+            url = `https://blogapi1200.fly.dev/uploads/${image}`
+            }
 
   const navigate = useNavigate();
 
@@ -116,6 +121,11 @@ const Edit = (props) => {
           <button type="submit">Submit</button>
         </div>
       </form>
+      <img className="img" src={url}></img>
+      <div className="deleteImageContainer">
+                  <button className="delete" value={index._id}  >delete image</button>
+
+                </div>
       <h2>Comments</h2>
 
       <CommentsJsx

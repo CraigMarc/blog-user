@@ -23,31 +23,8 @@ const NewPost = (props) => {
     formData.append("title", data.title)
     formData.append("text", data.text)
     formData.append("image", data.image);
-    console.log(data)
-/*
-    await fetch("https://blogapi1200.fly.dev/users/posts/", {
-      
-      method: 'Post',
-      body: JSON.stringify({
-        title: data.title,
-        text: data.text,
-        image: data.image
-      }),
-      headers: {
-        Authorization: tokenFetch,
-        //'Content-type': 'application/json; charset=UTF-8',
-        'Content-type': "multipart/form-data"
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        navigate('/');
+    
 
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-*/
 await fetch("https://blogapi1200.fly.dev/users/posts/", {
       
       method: 'Post',
