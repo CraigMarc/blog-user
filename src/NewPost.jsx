@@ -25,17 +25,17 @@ const NewPost = (props) => {
     formData.append("title", data.title)
     formData.append("text", data.text)
     formData.append("image", data.image);
-    
 
-await fetch("https://blogapi1200.fly.dev/users/posts/", {
-      
+
+    await fetch("https://blogapi1200.fly.dev/users/posts/", {
+
       method: 'Post',
       body: formData,
-      
+
       headers: {
         Authorization: tokenFetch,
         //'Content-type': 'application/json; charset=UTF-8',
-        
+
       },
     })
       .then((response) => response.json())
@@ -65,7 +65,7 @@ await fetch("https://blogapi1200.fly.dev/users/posts/", {
         </label>
         <div className="form-group">
           <label>Image:</label>
-          <input type="file" className="form-control-file" id="image" name="image"/>
+          <input type="file" className="form-control-file" id="image" name="image" />
         </div>
         <div>
           <button type="submit">Submit</button>

@@ -128,40 +128,122 @@ const Edit = (props) => {
       });
   };
 
-  //jsx
+  // add pic
 
-  return (
-    <div className="login-wrapper">
-      <Header />
-      <h2>Edit Post</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Title</p>
-          <input defaultValue={postData[0].title} type="text" name="title" />
-        </label>
-        <label>
-          <p>Text</p>
-          <textarea defaultValue={postData[0].text} type="text" name="text" />
-        </label>
-        <div>
-          <button type="submit">Submit</button>
+  const newImage = async e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target).entries());
+    const formData = new FormData();
+    
+    formData.append("image", data.image);
+
+
+    await fetch(`https://blogapi1200.fly.dev/users/image/${postId}`, {
+
+      method: 'Post',
+      body: formData,
+
+      headers: {
+        Authorization: tokenFetch,
+        //'Content-type': 'application/json; charset=UTF-8',
+
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setMessages(data)
+
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
+  }
+
+  //jsx
+  console.log(postData[0].image)
+
+  // render delete pic button
+
+  if (postData[0].image) {
+    return (
+      <div className="login-wrapper">
+        <Header />
+        <h2>Edit Post</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <p>Title</p>
+            <input defaultValue={postData[0].title} type="text" name="title" />
+          </label>
+          <label>
+            <p>Text</p>
+            <textarea defaultValue={postData[0].text} type="text" name="text" />
+          </label>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+        <img className="img" src={url}></img>
+        <div className="deleteImageContainer">
+          <button className="delete" value={postData[0]._id} onClick={deleteImage}>delete image</button>
+
         </div>
-      </form>
-      <img className="img" src={url}></img>
-      <div className="deleteImageContainer">
-        <button className="delete" value={postData[0]._id} onClick={deleteImage}>delete image</button>
+        <h2>Comments</h2>
+
+        <CommentsJsx
+          commentData={commentData}
+          deleteComments={deleteComments}
+        />
 
       </div>
-      <h2>Comments</h2>
+    )
+  }
 
-      <CommentsJsx
-        commentData={commentData}
-        deleteComments={deleteComments}
-      />
+  // render add new pic button
 
-    </div>
-  )
+  else {
 
+    return (
+      <div className="login-wrapper">
+        <Header />
+        <h2>Edit Post</h2>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <p>Title</p>
+            <input defaultValue={postData[0].title} type="text" name="title" />
+          </label>
+          <label>
+            <p>Text</p>
+            <textarea defaultValue={postData[0].text} type="text" name="text" />
+          </label>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+        <img className="img" src={url}></img>
+        <div className="addImageContainer">
+          <form encType="multipart/form-data" onSubmit={newImage}>
+            <label>
+              <div className="form-group">
+                <label>Image:</label>
+                <input type="file" className="form-control-file" id="image" name="image" />
+              </div>
+            </label>
+            <div>
+              <button type="submit">Add New Picture</button>
+            </div>
+          </form>
+        </div>
+        <h2>Comments</h2>
+
+        <CommentsJsx
+          commentData={commentData}
+          deleteComments={deleteComments}
+        />
+
+      </div>
+    )
+  }
 
 
 }
