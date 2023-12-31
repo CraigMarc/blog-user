@@ -16,6 +16,8 @@ const NewPost = (props) => {
   const tokenOb = JSON.parse(token)
   const tokenFetch = `Bearer ${tokenOb.token}`
 
+  //submit new post
+
   const handleSubmit = async e => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target).entries());

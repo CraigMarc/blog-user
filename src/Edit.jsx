@@ -11,6 +11,7 @@ const Edit = (props) => {
   const {
 
     messages,
+    setMessages,
     comments,
     setComments,
 
@@ -22,16 +23,16 @@ const Edit = (props) => {
   const postData = messages.filter((post) => post._id == postId)
   const commentData = comments.filter((comment) => comment.posts_id == postId)
   let image = postData[0].image
-            let url =""
-            if (image) {
-            url = `https://blogapi1200.fly.dev/uploads/${image}`
-            }
+  let url = ""
+  if (image) {
+    url = `https://blogapi1200.fly.dev/uploads/${image}`
+  }
 
   const navigate = useNavigate();
 
-   // delete comments
+  // delete comments
 
-   const deleteComments = async (event) => {
+  const deleteComments = async (event) => {
     let id = event.target.value
 
 
@@ -45,7 +46,7 @@ const Edit = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        
+
         setComments(data)
         //maybe set state for a rerender
       })
@@ -102,6 +103,31 @@ const Edit = (props) => {
 
   }
 
+  // delete pic
+
+  const deleteImage = async (event) => {
+    let id = event.target.value
+
+
+    await fetch(`https://blogapi1200.fly.dev/users/image/${id}`, {
+      method: 'Delete',
+
+      headers: {
+        Authorization: tokenFetch,
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+
+        setMessages(data)
+        //maybe set state for a rerender
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   //jsx
 
   return (
@@ -123,9 +149,9 @@ const Edit = (props) => {
       </form>
       <img className="img" src={url}></img>
       <div className="deleteImageContainer">
-                  <button className="delete" value={index._id}  >delete image</button>
+        <button className="delete" value={postData[0]._id} onClick={deleteImage}>delete image</button>
 
-                </div>
+      </div>
       <h2>Comments</h2>
 
       <CommentsJsx

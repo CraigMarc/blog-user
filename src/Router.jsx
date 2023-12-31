@@ -50,6 +50,7 @@ const Router = (props) => {
       element:
         <Edit
           messages={messages}
+          setMessages={setMessages}
           comments={comments}
           setComments={setComments}
 
