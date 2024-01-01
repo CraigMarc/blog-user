@@ -169,11 +169,11 @@ const Edit = (props) => {
     return (
       <div className="login-wrapper">
         <Header />
-        <h2>Edit Post</h2>
+        <h2 className="pageTitle">Edit Post</h2>
         <form onSubmit={handleSubmit}>
           <label>
             <p>Title</p>
-            <input defaultValue={postData[0].title} type="text" name="title" />
+            <input className="titleInput" defaultValue={postData[0].title} type="text" name="title" />
           </label>
           <label>
             <p>Text</p>
@@ -206,11 +206,11 @@ const Edit = (props) => {
     return (
       <div className="login-wrapper">
         <Header />
-        <h2>Edit Post</h2>
+        <h2 className="pageTitle">Edit Post</h2>
         <form onSubmit={handleSubmit}>
           <label>
             <p>Title</p>
-            <input defaultValue={postData[0].title} type="text" name="title" />
+            <input className="titleInput" defaultValue={postData[0].title} type="text" name="title" />
           </label>
           <label>
             <p>Text</p>
@@ -229,12 +229,12 @@ const Edit = (props) => {
                 <input type="file" className="form-control-file" id="image" name="image" />
               </div>
             </label>
-            <div>
+            <div className="addImage">
               <button type="submit">Add New Picture</button>
             </div>
           </form>
         </div>
-        <h2>Comments</h2>
+        <h2 className="commentTitle">Comments</h2>
 
         <CommentsJsx
           commentData={commentData}

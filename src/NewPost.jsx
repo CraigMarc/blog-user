@@ -57,7 +57,7 @@ const NewPost = (props) => {
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <label>
           <p>Title</p>
-          <input type="text" name="title" onChange={e => setTitle(e.target.value)} />
+          <input className="titleInput" type="text" name="title" onChange={e => setTitle(e.target.value)} />
         </label>
         <label>
           <p>Text</p>

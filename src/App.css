@@ -17,6 +17,10 @@ h2 {font-size: 30px;}
 
 h1 {font-size: 60px;}
 
+.loginSubmit {
+  padding-top: 20px;
+}
+
 header {
   display: flex;
   align-items: center;
@@ -76,6 +80,7 @@ header {
 
   .pageTitle {
     padding-top: 20px;
+    
   }
 
   .newPostContainer {
@@ -85,6 +90,7 @@ header {
   textarea {
     width: 70%;
     height: 300px;
+    border-radius: 5px;
   }
 
   .newPostSubmit {
@@ -96,12 +102,30 @@ header {
   }
 
   input {
-    width: 70%;
-    font-size: 18px;
-  }
+    border-radius: 5px;
+     font-size: 18px;
+   }
 
   label {
     font-size: 18px;
   }
+.titleInput {
+  width: 70%;
+}
+
+.commentTitle {
+  padding-top: 30px;
+}
+
+.commentCard {
+  border-bottom: solid;
+  border-width: 0.1px;
+  padding-top: 20px;
+}
+
+.deleteCommentContainer {
+padding-top: 20px;
+padding-bottom: 20px;
+}
 
   

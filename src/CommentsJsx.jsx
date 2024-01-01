@@ -15,14 +15,14 @@ const CommentsJsx = (props) => {
     }
 
     return (
-      <div>
+      <div className="commentCont">
         {commentData.map((index) => {
             let date = new Date(index.timestamp).toLocaleString()
             
             
             return (
 
-              <div key={index._id} className="product">
+              <div key={index._id} className="commentCard">
                 
                   <div id={index._id} className="card" >
 
