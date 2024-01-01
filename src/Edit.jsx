@@ -107,7 +107,7 @@ const Edit = (props) => {
 
   const deleteImage = async (event) => {
     let id = event.target.value
-
+    
 
     await fetch(`https://blogapi1200.fly.dev/users/image/${id}`, {
       method: 'Delete',
@@ -161,7 +161,7 @@ const Edit = (props) => {
   }
 
   //jsx
-  console.log(postData[0].image)
+  
 
   // render delete pic button
 

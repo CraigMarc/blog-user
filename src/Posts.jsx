@@ -92,7 +92,7 @@ function Posts(props) {
       const [apiPosts, apiComments] = await Promise.all([
         fetch('https://blogapi1200.fly.dev/users/posts', {
           headers: { Authorization: tokenFetch }
-  
+
         }),
         fetch("https://blogapi1200.fly.dev/api/comments")
       ]);
@@ -102,7 +102,7 @@ function Posts(props) {
       const commentData = await apiComments.json();
       setMessages(messageData)
       setComments(commentData)
-      
+
     }
 
     catch (error) {
@@ -139,7 +139,7 @@ function Posts(props) {
   return (
     <div>
       <Header />
-      <h2>All Posts</h2>
+      <h2 className='pageTitle'>All Posts</h2>
       <div className='postContainer'>
 
         <div className="postCard">
@@ -147,9 +147,9 @@ function Posts(props) {
           {messages.map((index) => {
             const postComments = comments.filter((comment) => comment.posts_id == index._id).length
             let image = index.image
-            let url =""
+            let url = ""
             if (image) {
-            url = `https://blogapi1200.fly.dev/uploads/${index.image}`
+              url = `https://blogapi1200.fly.dev/uploads/${index.image}`
             }
             let date = new Date(index.timestamp).toLocaleString()
             let published = ""
@@ -162,32 +162,40 @@ function Posts(props) {
 
             return (
 
-              <div key={index._id} className="product">
-                
-                  <div id={index._id} className="card" >
+              <div key={index._id} className="post">
+
+                <div id={index._id} className="card" >
 
 
-                    <h3>{index.title}</h3>
-                    <img className="img" src={url}></img>
+                  <h2 className='postTitle'>{index.title}</h2>
+                  <img className="imgPost" src={url}></img>
+                  <div className='commentContainer'>
                     <p>Published: {published}</p>
-                    <p>{date}</p>
-                    <p>Comments: {postComments}</p>
+                    <div>
+                      <p>{date}</p>
+                    </div>
+                    <div>
+                      <div className='commentPadding'>
+                        <p>Comments: {postComments}</p>
+                      </div>
+                    </div>
                   </div>
-                
-                <div className="deleteButtonContainer">
-                  <button className="delete" value={index._id} onClick={handleDelete} >delete post</button>
-
                 </div>
-                <div className="editButtonContainer" >
-                  <Link to={`post/${index._id}`} state={index._id}>
-                    <button className="edit" value={index._id} >edit post</button>
-                  </Link>
-                </div>
-                <div className="publishButtonContainer"  >
-                  <button className="publish" value={index._id} onClick={handlePublish} >publish/unpublish post</button>
+                <div className='allButtonContainer'>
+                  <div className="deleteButtonContainer">
+                    <button className="delete" value={index._id} onClick={handleDelete} >delete post</button>
 
-                </div>
+                  </div>
+                  <div className="editButtonContainer" >
+                    <Link to={`post/${index._id}`} state={index._id}>
+                      <button className="edit" value={index._id} >edit post</button>
+                    </Link>
+                  </div>
+                  <div className="publishButtonContainer"  >
+                    <button className="publish" value={index._id} onClick={handlePublish} >publish/unpublish post</button>
 
+                  </div>
+                </div>
               </div>
 
             )
