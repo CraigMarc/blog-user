@@ -183,12 +183,12 @@ const Edit = (props) => {
             <button type="submit">Submit</button>
           </div>
         </form>
-        <img className="img" src={url}></img>
+        <img className="imgEdit" src={url}></img>
         <div className="deleteImageContainer">
           <button className="delete" value={postData[0]._id} onClick={deleteImage}>delete image</button>
 
         </div>
-        <h2>Comments</h2>
+        <h2 className="commentTitle">Comments</h2>
 
         <CommentsJsx
           commentData={commentData}

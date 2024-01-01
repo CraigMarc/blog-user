@@ -59,7 +59,7 @@ const Login = (props) => {
 
   return(
     <div className="login-wrapper">
-      <h1>Please Log In</h1>
+      <h1>Blog Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
           <p>Username</p>
