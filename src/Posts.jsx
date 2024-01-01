@@ -168,7 +168,7 @@ function Posts(props) {
 
 
                   <h2 className='postTitle'>{index.title}</h2>
-                  <img className="imgPost" src={url}></img>
+                  <img alt="no image" className="imgPost" src={url}></img>
                   <div className='commentContainer'>
                     <p>Published: {published}</p>
                     <div>

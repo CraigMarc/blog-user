@@ -81,3 +81,27 @@ header {
   .newPostContainer {
     padding-top: 20px;
   }
+
+  textarea {
+    width: 70%;
+    height: 300px;
+  }
+
+  .newPostSubmit {
+    padding-top: 20px;
+  }
+
+  .addImage {
+    padding-top: 20px;
+  }
+
+  input {
+    width: 70%;
+    font-size: 18px;
+  }
+
+  label {
+    font-size: 18px;
+  }
+
+  

@@ -53,7 +53,7 @@ const NewPost = (props) => {
     <div className="login-wrapper">
 
       <Header />
-      <h2>New Post</h2>
+      <h2 className="pageTitle">New Post</h2>
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <label>
           <p>Title</p>
@@ -63,12 +63,12 @@ const NewPost = (props) => {
           <p>Text</p>
           <textarea type="text" name="text" onChange={e => setText(e.target.value)} />
         </label>
-        <div className="form-group">
+        <div className="addImage">
           <label>Image:</label>
           <input type="file" className="form-control-file" id="image" name="image" />
         </div>
-        <div>
-          <button type="submit">Submit</button>
+        <div className="newPostSubmit">
+          <button type="submit post">Submit</button>
         </div>
       </form>
 
