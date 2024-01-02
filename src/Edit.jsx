@@ -220,7 +220,7 @@ const Edit = (props) => {
             <button type="submit">Submit</button>
           </div>
         </form>
-        <img className="img" src={url}></img>
+        <img className="imgEdit" src={url}></img>
         <div className="addImageContainer">
           <form encType="multipart/form-data" onSubmit={newImage}>
             <label>
