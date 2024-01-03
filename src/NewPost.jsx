@@ -57,11 +57,11 @@ const NewPost = (props) => {
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
         <label>
           <p>Title</p>
-          <input className="titleInput" type="text" name="title" onChange={e => setTitle(e.target.value)} />
+          <input className="titleInput" type="text" name="title" required onChange={e => setTitle(e.target.value)} />
         </label>
         <label>
           <p>Text</p>
-          <textarea type="text" name="text" onChange={e => setText(e.target.value)} />
+          <textarea type="text" name="text" required onChange={e => setText(e.target.value)} />
         </label>
         <div className="addImage">
           <label>Image (file must be .jpeg .jpg or .png):</label>
