@@ -65,7 +65,7 @@ const NewPost = (props) => {
         </label>
         <div className="addImage">
           <label>Image (file must be .jpeg .jpg or .png):</label>
-          <input type="file" className="form-control-file" id="image" name="image" />
+          <input type="file" className="form-control-file" id="image" name="image" accept=".jpeg, .jpg, .png" />
         </div>
         <div className="newPostSubmit">
           <button type="submit post">Submit</button>
