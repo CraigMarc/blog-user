@@ -64,7 +64,7 @@ const NewPost = (props) => {
           <textarea type="text" name="text" onChange={e => setText(e.target.value)} />
         </label>
         <div className="addImage">
-          <label>Image:</label>
+          <label>Image (file must be .jpeg .jpg or .png):</label>
           <input type="file" className="form-control-file" id="image" name="image" />
         </div>
         <div className="newPostSubmit">

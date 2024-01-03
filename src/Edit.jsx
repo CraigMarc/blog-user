@@ -225,7 +225,7 @@ const Edit = (props) => {
           <form encType="multipart/form-data" onSubmit={newImage}>
             <label>
               <div className="form-group">
-                <label>Image:</label>
+                <label>Image (file must be .jpeg .jpg or .png):</label>
                 <input type="file" className="form-control-file" id="image" name="image" />
               </div>
             </label>
